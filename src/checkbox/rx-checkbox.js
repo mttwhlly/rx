@@ -25,17 +25,23 @@ class RxCheckbox extends LitElement {
       position: absolute;
       top: 0;
       left: 0;
-      height: 25px;
-      width: 25px;
-      background-color: #eee;
+      height: 16px;
+      width: 16px;
+      background-color: #fff;
+      border: 2px solid #0027cd;
+      border-radius: 4px;
     }
 
     :host:hover input ~ span {
-      background-color: #ccc;
+      background-color: #fff;
+      border: 2px solid #0027cd;
+      border-radius: 4px;
     }
 
     :host input:checked ~ span {
-      background-color: #2196f3;
+      background-color: #0027cd;
+      border: 2px solid #0027cd;
+      border-radius: 4px;
     }
 
     /* Style the checkmark/indicator */
@@ -50,8 +56,8 @@ class RxCheckbox extends LitElement {
     }
 
     :host span:after {
-      left: 9px;
-      top: 5px;
+      left: 4px;
+      top: 0px;
       width: 5px;
       height: 10px;
       border: solid white;
@@ -60,17 +66,43 @@ class RxCheckbox extends LitElement {
     }
   `;
 
+  static get properties() {
+    return {
+      checked: { type: Boolean },
+      label: { type: String },
+    };
+  }
+
+  constructor() {
+    super();
+    this.checked = false;
+    this.label = "";
+  }
+
   render() {
     return html`
       <label>
-        <input type="checkbox" @change="${this._onChange}" />
-        <span></span>
+        <input
+          type="checkbox"
+          role="checkbox"
+          tabindex="0"
+          ?disabled="${this.disabled}"
+          aria-label="${this.label}"
+          aria-checked="${this.checked}"
+          aria-disabled="${this.disabled}"
+          ?checked="${this.checked}"
+          @change="${this._onChange}"
+          data-testid="checkbox"
+        /><span> ${this.label} </span>
       </label>
     `;
   }
 
   _onChange(e) {
-    this.dispatchEvent(new CustomEvent("change", { detail: e.target.checked }));
+    this.checked = e.target.checked;
+    this.dispatchEvent(
+      new CustomEvent("change", { detail: { checked: this.checked } })
+    );
   }
 }
 
