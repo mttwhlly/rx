@@ -10,9 +10,10 @@ export default {
 };
 
 export const Default = {
-  render: () => html` <rx-checkbox>Default</rx-checkbox> `,
-};
-
-export const Checked = {
-  render: () => html` <rx-checkbox checked>Checked</rx-checkbox> `,
+  render: () => html` <rx-checkbox></rx-checkbox> `,
+  argTypes: {
+    checked: { control: "boolean" },
+    disabled: { control: "boolean" },
+    label: { control: "text" },
+  },
 };

@@ -33,6 +33,8 @@
     "@storybook/html": "^7.6.17",
     "@storybook/html-vite": "^7.6.17",
     "@storybook/test": "^7.6.17",
+    "@storybook/web-components": "^7.6.17",
+    "@storybook/web-components-vite": "^7.6.17",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "storybook": "^7.6.17"
