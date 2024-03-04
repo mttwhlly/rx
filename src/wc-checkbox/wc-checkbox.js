@@ -12,13 +12,18 @@ class CustomCheckbox extends HTMLElement {
       :host {
         display: block;
         position: relative;
-        padding-left: 35px;
+        padding-left: 24px;
         margin-bottom: 12px;
         cursor: pointer;
-        font-size: 22px;
         user-select: none;
+        font-weight: 600;
+        font-size: 14px;
+        font-family: "Lato", sans-serif;
+        line-height: 16px;
+        text-align: left;
+        letter-spacing: 0.2px;
       }
-  
+
       :host input {
         position: absolute;
         opacity: 0;
@@ -31,22 +36,22 @@ class CustomCheckbox extends HTMLElement {
         position: absolute;
         top: 0;
         left: 0;
-        height: 16px;
-        width: 16px;
+        height: 12px;
+        width: 12px;
         background-color: #fff;
-        border: 2px solid #0027cd;
+        border: 2px solid #0072cd;
         border-radius: 4px;
       }
   
       :host:hover input ~ span {
         background-color: #fff;
-        border: 2px solid #0027cd;
+        border: 2px solid #0072cd;
         border-radius: 4px;
       }
   
       :host input:checked ~ span {
-        background-color: #0027cd;
-        border: 2px solid #0027cd;
+        background-color: #0072cd;
+        border: 2px solid #0072cd;
         border-radius: 4px;
       }
   
@@ -62,19 +67,27 @@ class CustomCheckbox extends HTMLElement {
       }
   
       :host span:after {
-        left: 4px;
-        top: 0px;
-        width: 5px;
-        height: 10px;
+        left: 3px;
+        top: 1px;
+        width: 3px;
+        height: 6px;
         border: solid white;
         border-width: 0 3px 3px 0;
         transform: rotate(45deg);
       }
-    </style>
-        <label>
-          <input type="checkbox" ${this._checked ? "checked" : ""}>
-          <span>${this._label}</span>
-        </label>
+
+      :host([disabled]) {
+        cursor: not-allowed;
+        opacity: 0.5;  
+      }
+      </style>
+      <label>
+        <input type="checkbox" ${
+          this._checked ? "checked" : ""
+        } data-testid="checkbox">
+        <span></span>
+        ${this._label}
+      </label>
       `;
 
     this._checkbox = this._shadowRoot.querySelector("input");

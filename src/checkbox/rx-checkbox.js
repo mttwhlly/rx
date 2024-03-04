@@ -6,11 +6,16 @@ class RxCheckbox extends LitElement {
     :host {
       display: block;
       position: relative;
-      padding-left: 35px;
+      padding-left: 24px;
       margin-bottom: 12px;
       cursor: pointer;
-      font-size: 22px;
       user-select: none;
+      font-weight: 600;
+      font-size: 14px;
+      font-family: "Lato", sans-serif;
+      line-height: 16px;
+      text-align: left;
+      letter-spacing: 0.2px;
     }
 
     :host input {
@@ -25,22 +30,22 @@ class RxCheckbox extends LitElement {
       position: absolute;
       top: 0;
       left: 0;
-      height: 16px;
-      width: 16px;
+      height: 12px;
+      width: 12px;
       background-color: #fff;
-      border: 2px solid #0027cd;
+      border: 2px solid #0072cd;
       border-radius: 4px;
     }
 
     :host:hover input ~ span {
       background-color: #fff;
-      border: 2px solid #0027cd;
+      border: 2px solid #0072cd;
       border-radius: 4px;
     }
 
     :host input:checked ~ span {
-      background-color: #0027cd;
-      border: 2px solid #0027cd;
+      background-color: #0072cd;
+      border: 2px solid #0072cd;
       border-radius: 4px;
     }
 
@@ -56,13 +61,18 @@ class RxCheckbox extends LitElement {
     }
 
     :host span:after {
-      left: 4px;
+      left: 3px;
       top: 0px;
-      width: 5px;
-      height: 10px;
+      width: 3px;
+      height: 6px;
       border: solid white;
       border-width: 0 3px 3px 0;
       transform: rotate(45deg);
+    }
+
+    :host([disabled]) {
+      cursor: not-allowed;
+      opacity: 0.5;
     }
   `;
 
@@ -93,7 +103,8 @@ class RxCheckbox extends LitElement {
           ?checked="${this.checked}"
           @change="${this._onChange}"
           data-testid="checkbox"
-        /><span> ${this.label} </span>
+        /><span></span>
+        ${this.label}
       </label>
     `;
   }
