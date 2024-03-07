@@ -1,5 +1,5 @@
 // Import Lit and html
-import { LitElement, html, css } from "lit";
+import { LitElement, html, css, nothing } from "lit";
 
 class RxCheckbox extends LitElement {
   static styles = css`
@@ -7,15 +7,21 @@ class RxCheckbox extends LitElement {
       display: block;
       position: relative;
       padding-left: 24px;
-      margin-bottom: 12px;
+      margin-top: 2px;
+      margin-bottom: 8px;
       cursor: pointer;
       user-select: none;
-      font-weight: 600;
+      font-weight: 400;
       font-size: 14px;
       font-family: "Lato", sans-serif;
       line-height: 16px;
       text-align: left;
       letter-spacing: 0.2px;
+    }
+
+    /* bold text if input within label is checked using :has() (https://caniuse.com/css-has) */
+    :host label:has(input:checked) {
+      font-weight: 700;
     }
 
     :host input {
@@ -63,10 +69,10 @@ class RxCheckbox extends LitElement {
     :host span:after {
       left: 3px;
       top: 0px;
-      width: 3px;
-      height: 6px;
+      width: 4px;
+      height: 7px;
       border: solid white;
-      border-width: 0 3px 3px 0;
+      border-width: 0 2px 2px 0;
       transform: rotate(45deg);
     }
 
@@ -76,44 +82,63 @@ class RxCheckbox extends LitElement {
     }
   `;
 
-  static get properties() {
-    return {
-      checked: { type: Boolean },
-      label: { type: String },
-    };
-  }
+  static shadowRootOptions = {
+    ...LitElement.shadowRootOptions,
+    delegatesFocus: true,
+  };
+
+  static properties = {
+    // attribute reflection: https://lit.dev/docs/components/properties/#reflected-attributes
+    checked: { type: Boolean, reflect: true },
+    id: { type: String },
+    name: { type: String },
+    label: { type: String },
+    dirty: { type: Boolean },
+    value: { type: String },
+  };
 
   constructor() {
     super();
     this.checked = false;
+    this.id = "";
+    this.name = "";
     this.label = "";
+    this.dirty = false;
+    this.value = "";
   }
 
   render() {
+    // nothing: https://lit.dev/docs/api/templates/#nothing
     return html`
-      <label>
+      <label id="${this.label}">
         <input
           type="checkbox"
           role="checkbox"
           tabindex="0"
-          ?disabled="${this.disabled}"
-          aria-label="${this.label}"
-          aria-checked="${this.checked}"
-          aria-disabled="${this.disabled}"
-          ?checked="${this.checked}"
-          @change="${this._onChange}"
-          data-testid="checkbox"
+          aria-checked="${this.checked ? "true" : "false"}"
+          checked="${this.checked || nothing}"
+          id="${this.id}"
+          name="${this.name}"
+          value="${this.checked}"
+          @click="${this.onChange}"
+          isdirty="${this.dirty ? "True" : "False"}"
         /><span></span>
         ${this.label}
       </label>
     `;
   }
 
-  _onChange(e) {
+  onChange(e) {
     this.checked = e.target.checked;
+    this.dirty = true;
+    this.value = e.target.checked;
     this.dispatchEvent(
-      new CustomEvent("change", { detail: { checked: this.checked } })
+      // bubble since change is not a composed event
+      new Event("change", { bubbles: true })
     );
+    // Call the `SetFieldDirty` global jQuery function
+    // TODO: determine whether this is the best way to do this and if not, refactor
+    SetFieldDirty(this);
   }
 }
 

@@ -13,6 +13,12 @@ import "./rx-checkbox.js";
 export default {
   title: "Checkbox (LitElement)",
   component: "rx-checkbox",
+  parameters: {
+    design: {
+      type: "figma",
+      url: "https://www.figma.com/file/w8Lpk7RAJO79uZWWXZ8YI4/CAQH-DLS-Versions-1.5-%26-2.0?type=design&node-id=175-4080&mode=design&t=i9Mpma3fRtZEkuyz-4",
+    },
+  },
 };
 
 export const Default = ({ label, checked }) => {
