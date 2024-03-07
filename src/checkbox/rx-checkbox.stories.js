@@ -1,7 +1,7 @@
 import { userEvent, within, waitFor } from "@storybook/testing-library";
 import { expect } from "@storybook/jest";
 // Import the LitElement and html function
-import { html } from "lit";
+import { html, nothing } from "lit";
 
 // Import the shadow root helper
 import { withinShadowRoot } from "./helpers";
@@ -11,7 +11,7 @@ import "./rx-checkbox.js";
 
 // Define the story
 export default {
-  title: "Checkbox (LitElement)",
+  title: "Checkbox",
   component: "rx-checkbox",
   parameters: {
     design: {
@@ -21,27 +21,38 @@ export default {
   },
 };
 
-export const Default = ({ label, checked }) => {
+export const Default = ({ label, checked, name, id }) => {
   return html`
-    <rx-checkbox label="${label}" ${checked ? "checked" : ""}></rx-checkbox>
+    <rx-checkbox
+      label="${label}"
+      checked="${checked ? "checked" : nothing}"
+      name="${name}"
+      id="${id}"
+    ></rx-checkbox>
   `;
 };
 Default.args = {
   label: "Default",
   checked: false,
+  name: "default",
+  id: "default",
 };
 
-export const Checked = ({ label, checked }) => {
+export const Checked = ({ label, checked, name, id }) => {
   return html`
     <rx-checkbox
       label="${label}"
-      checked="${checked ? "checked" : ""}"
+      checked="${checked ? "checked" : nothing}"
+      name="${name}"
+      id="${id}"
     ></rx-checkbox>
   `;
 };
 Checked.args = {
   label: "Checked",
   checked: true,
+  name: "default",
+  id: "default",
 };
 
 /*
