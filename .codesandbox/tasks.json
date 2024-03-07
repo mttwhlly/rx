@@ -11,18 +11,19 @@
   "tasks": {
     "test": {
       "name": "test",
-      "command": "npm run test",
-      "runAtStart": false
+      "command": "npm run test"
     },
     "storybook": {
       "name": "storybook",
       "command": "npm run storybook",
-      "runAtStart": true
+      "runAtStart": true,
+      "preview": {
+        "port": 6006
+      }
     },
     "build-storybook": {
       "name": "build-storybook",
-      "command": "npm run build-storybook",
-      "runAtStart": false
+      "command": "npm run build-storybook"
     }
   }
 }
