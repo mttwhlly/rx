@@ -122,6 +122,7 @@ class RxCheckbox extends LitElement {
           value="${this.checked}"
           @click="${this.onChange}"
           isdirty="${this.dirty ? "True" : "False"}"
+          data-testid="rx-checkbox"
         /><span></span>
         ${this.label}
       </label>

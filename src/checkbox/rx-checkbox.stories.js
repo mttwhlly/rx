@@ -59,18 +59,27 @@ Checked.args = {
  * See https://storybook.js.org/docs/writing-stories/play-function#working-with-the-canvas
  * to learn more about using the canvasElement to query the DOM
  */
-export const Testing = {
-  render: () => html` <rx-checkbox label="Testing"></rx-checkbox> `,
-  argTypes: {
-    checked: false,
-    label: "Testing",
-  },
-  play: async ({ canvasElement }) => {
-    const wc = await withinShadowRoot(canvasElement, "rx-checkbox");
-    const checkbox = wc.getByTestId("checkbox");
+export const Testing = ({ label, checked, name, id }) => {
+  return html`
+    <rx-checkbox
+      label="${label}"
+      checked="${checked ? "checked" : nothing}"
+      name="${name}"
+      id="${id}"
+    ></rx-checkbox>
+  `;
+};
+Testing.args = {
+  label: "Testing",
+  checked: false,
+  name: "Testing",
+  id: "Testing",
+};
+Testing.play = async ({ canvasElement }) => {
+  const wc = await withinShadowRoot(canvasElement, "rx-checkbox");
+  const checkbox = wc.getByTestId("rx-checkbox");
 
-    await userEvent.click(checkbox);
+  await userEvent.click(checkbox);
 
-    expect(checkbox).toBeChecked();
-  },
+  expect(checkbox).toBeChecked();
 };
