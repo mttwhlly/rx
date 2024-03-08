@@ -21,13 +21,14 @@ export default {
   },
 };
 
-export const Default = ({ label, checked, name, id }) => {
+export const Default = ({ label, checked, name, id, disabled }) => {
   return html`
     <rx-checkbox
       label="${label}"
       checked="${checked ? "checked" : nothing}"
       name="${name}"
       id="${id}"
+      disabled="${disabled ? "disabled" : nothing}"
     ></rx-checkbox>
   `;
 };
@@ -36,15 +37,17 @@ Default.args = {
   checked: false,
   name: "default",
   id: "default",
+  disabled: false,
 };
 
-export const Checked = ({ label, checked, name, id }) => {
+export const Checked = ({ label, checked, name, id, disabled }) => {
   return html`
     <rx-checkbox
       label="${label}"
       checked="${checked ? "checked" : nothing}"
       name="${name}"
       id="${id}"
+      disabled="${disabled ? "disabled" : nothing}"
     ></rx-checkbox>
   `;
 };
@@ -53,6 +56,26 @@ Checked.args = {
   checked: true,
   name: "default",
   id: "default",
+  disabled: false,
+};
+
+export const Disabled = ({ label, checked, name, id, disabled }) => {
+  return html`
+    <rx-checkbox
+      label="${label}"
+      checked="${checked ? "checked" : nothing}"
+      name="${name}"
+      id="${id}"
+      disabled="${disabled ? "disabled" : nothing}"
+    ></rx-checkbox>
+  `;
+};
+Disabled.args = {
+  label: "Disabled",
+  checked: false,
+  name: "default",
+  id: "default",
+  disabled: true,
 };
 
 /*

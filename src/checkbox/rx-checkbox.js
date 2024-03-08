@@ -95,6 +95,7 @@ class RxCheckbox extends LitElement {
     label: { type: String },
     dirty: { type: Boolean },
     value: { type: String },
+    disabled: { type: Boolean, reflect: true },
   };
 
   constructor() {
@@ -105,6 +106,7 @@ class RxCheckbox extends LitElement {
     this.label = "";
     this.dirty = false;
     this.value = "";
+    this.disabled = false;
   }
 
   render() {
@@ -123,6 +125,8 @@ class RxCheckbox extends LitElement {
           @click="${this.onChange}"
           isdirty="${this.dirty ? "True" : "False"}"
           data-testid="rx-checkbox"
+          ?disabled="${this.disabled}"
+          aria-disabled="${this.disabled ? "true" : "false"}"
         /><span></span>
         ${this.label}
       </label>
