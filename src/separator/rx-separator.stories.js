@@ -31,7 +31,8 @@ export default {
 
 export const Horizontal = ({ vertical }) => {
   return html`
-    <div style="height: 200px;">
+    <!-- Note: <div> added to view the vertical separator in the story and may be removed -->
+    <div style="height: 20px;">
       <rx-separator
         vertical="${vertical ? "vertical" : nothing}"
       ></rx-separator>
@@ -44,7 +45,8 @@ Horizontal.args = {
 
 export const Vertical = ({ vertical }) => {
   return html`
-    <div style="height: 200px;">
+    <!-- Note: <div> added to view the vertical separator in the story and may be removed -->
+    <div style="height: 20px;">
       <rx-separator
         vertical="${vertical ? "vertical" : nothing}"
       ></rx-separator>
@@ -60,7 +62,10 @@ Vertical.args = {
  * to learn more about using the canvasElement to query the DOM
  */
 export const Testing = ({}) => {
-  return html` <rx-separator></rx-separator> `;
+  return html`
+    <!-- Note: <div> added to view the vertical separator in the story and may be removed -->
+    <div style="height: 20px;"><rx-separator></rx-separator></div>
+  `;
 };
 Testing.args = {
   // TODO: add args here
