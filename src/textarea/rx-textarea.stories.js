@@ -10,7 +10,7 @@ import "./rx-textarea.js";
 
 // Define the story
 export default {
-  title: "Textarea",
+  title: "Primitives/Textarea",
   component: "rx-textarea",
   args: {
     // https://storybook.js.org/docs/essentials/actions#action-args

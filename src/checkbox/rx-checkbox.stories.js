@@ -18,7 +18,7 @@ import "./rx-checkbox.js";
 
 // Define the story
 export default {
-  title: "Checkbox",
+  title: "Primitives/Checkbox",
   component: "rx-checkbox",
   args: {
     // https://storybook.js.org/docs/essentials/actions#action-args

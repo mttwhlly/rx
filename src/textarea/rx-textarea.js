@@ -27,8 +27,7 @@ class RxTextArea extends LitElement {
   static get styles() {
     return css`
       :host {
-        display: flex;
-        flex-direction: column-reverse;
+        display: block;
         width: 100%;
         margin-bottom: 16px;
       }
@@ -58,7 +57,7 @@ class RxTextArea extends LitElement {
         background-color: #e6e6e6;
         cursor: not-allowed;
       }
-      textarea:disabled ~ label {
+      label:has(textarea:disabled) {
         cursor: not-allowed;
         opacity: 0.5;
       }
@@ -67,23 +66,25 @@ class RxTextArea extends LitElement {
 
   render() {
     return html`
-      <textarea
-        id="${this.id}"
-        placeholder="${this.placeholder}"
-        maxlength="${this.maxlength}"
-        minlength="${this.minlength}"
-        name="${this.id}"
-        .value=${this.value}
-        @input=${this._updateValue}
-        role="textbox"
-        tabindex="0"
-        aria-label="${this.label}"
-        aria-disabled="${this.disabled ? "true" : "false"}"
-        data-testid="rx-textarea"
-        ?disabled="${this.disabled}"
-        isdirty="${this.dirty ? "True" : "False"}"
-      ></textarea>
-      <label for="${this.id}">${this.label}</label>
+      <label for="${this.id}"
+        >${this.label}
+        <textarea
+          id="${this.id}"
+          placeholder="${this.placeholder}"
+          maxlength="${this.maxlength}"
+          minlength="${this.minlength}"
+          name="${this.id}"
+          .value=${this.value}
+          @input=${this._updateValue}
+          role="textbox"
+          tabindex="0"
+          aria-label="${this.label}"
+          aria-disabled="${this.disabled ? "true" : "false"}"
+          data-testid="rx-textarea"
+          ?disabled="${this.disabled}"
+          isdirty="${this.dirty ? "True" : "False"}"
+        ></textarea>
+      </label>
     `;
   }
 
