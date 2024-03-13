@@ -112,12 +112,36 @@ Testing.args = {
   minlength: 0,
   maxlength: 10,
 };
-Testing.play = async ({ canvasElement }) => {
+Testing.play = async ({ canvasElement, step }) => {
   const wc = await withinShadowRoot(canvasElement, "rx-textarea");
+
   const textarea = wc.getByTestId("rx-textarea");
 
-  await userEvent.click(textarea);
-  await userEvent.type(textarea, "Test");
-
-  await expect(textarea).toHaveValue("Test");
+  await step("Element has correct attributes", async () => {
+    await expect(textarea).toBeTruthy();
+    await expect(textarea).toHaveAttribute("id", "Testing");
+    await expect(textarea).toHaveAttribute("placeholder", "");
+    await expect(textarea).toHaveAttribute("minlength", "0");
+    await expect(textarea).toHaveAttribute("maxlength", "10");
+    await expect(textarea).toHaveAttribute("isdirty", "False");
+    await expect(textarea).toHaveAttribute("data-testid", "rx-textarea");
+    await expect(textarea).toHaveAttribute("aria-disabled", "false");
+    await expect(textarea).toHaveAttribute("role", "textbox");
+    await expect(textarea).toHaveAttribute("tabindex", "0");
+    await expect(textarea).toHaveAttribute("aria-label", "Testing");
+  });
+  await step("Enter text (within maxlength)", async () => {
+    await userEvent.type(textarea, "Test");
+    await expect(textarea).toHaveValue("Test");
+  });
+  await step("Remove text", async () => {
+    await userEvent.type(
+      textarea,
+      "{backspace}{backspace}{backspace}{backspace}",
+    );
+  });
+  await step("Enter text (exceeding maxlength)", async () => {
+    await userEvent.type(textarea, "Test1234567890");
+    await expect(textarea).toHaveValue("Test123456");
+  });
 };
