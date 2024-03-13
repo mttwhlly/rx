@@ -2,7 +2,7 @@
 import { LitElement, html, css, nothing } from "lit";
 
 // TODO: remove this for use in app (and as soon as possible once alternative dirty approach used)
-import { SetFieldDirty } from "./helpers";
+import { SetFieldDirty } from "../helpers";
 
 /**
  * Represents a checkbox.

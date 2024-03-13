@@ -11,7 +11,7 @@ import { userEvent, fn, expect } from "@storybook/test";
 import { html, nothing } from "lit";
 
 // Import the shadow root helper
-import { withinShadowRoot } from "./helpers";
+import { withinShadowRoot } from "../helpers";
 
 // Import the custom checkbox component
 import "./rx-checkbox.js";
