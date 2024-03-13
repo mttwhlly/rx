@@ -7,8 +7,7 @@
  */
 
 // Import required dependencies
-import { userEvent, within, waitFor } from "@storybook/testing-library";
-import { expect } from "@storybook/jest";
+import { userEvent, fn, expect } from "@storybook/test";
 import { html, nothing } from "lit";
 
 // Import the shadow root helper
@@ -21,11 +20,16 @@ import "./rx-checkbox.js";
 export default {
   title: "Checkbox",
   component: "rx-checkbox",
+  args: {
+    // https://storybook.js.org/docs/essentials/actions#action-args
+    fn: fn(),
+  },
   parameters: {
-    design: {
-      type: "figma",
-      url: "https://www.figma.com/file/w8Lpk7RAJO79uZWWXZ8YI4/CAQH-DLS-Versions-1.5-%26-2.0?type=design&node-id=175-4080&mode=design&t=i9Mpma3fRtZEkuyz-4",
-    },
+    // TODO: Add design addon when fix is available (https://github.com/storybookjs/addon-designs/issues/231)
+    // design: {
+    //   type: "figma",
+    //   url: "https://www.figma.com/file/w8Lpk7RAJO79uZWWXZ8YI4/CAQH-DLS-Versions-1.5-%26-2.0?type=design&node-id=175-4080&mode=design&t=i9Mpma3fRtZEkuyz-4",
+    // },
   },
   tags: ["autodocs"],
 };

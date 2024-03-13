@@ -1,0 +1,114 @@
+🔎 checking possible migrations..
+? Tried to detect a Storybook renderer in your project but found multiple. This could happen in monorepos, when projects contain multiple Storybook packages in package.json. Please select the correct one: › > - Use arrow-keys. Return to submit. To automate this next time, you can pass the renderer to the CLI via the --renderer flag
+❯   @storybook/html
+    @storybook/web-components
+? Tried to detect a Storybook renderer in your project but found multiple. This could happen in monorepos, when projects contain multiple Storybook packages in package.json. Please select the correct one: › > - Use arrow-keys. Return to submit. To automate this next time, you can pass the renderer to the CLI via the --renderer flag
+    @storybook/html
+❯   @storybook/web-components
+✔ Tried to detect a Storybook renderer in your project but found multiple. This could happen in monorepos, when projects contain multiple Storybook packages in package.json. Please select the correct one: › @storybook/web-components
+
+🔎 found a 'viteConfigFile' migration:
+╭ Migration notification ──────────────────────────────────────────────────────────╮
+│                                                                                  │
+│   Since version 8.0.0, Storybook no longer ships with a Vite config build-in.    │
+│   Please add a vite.config.js file to your project root.                         │
+│                                                                                  │
+│   You can find more information on how to do this here:                          │
+│   https://storybook.js.org/docs/8.0/migration-guide/#missing-viteconfigjs-file   │
+│                                                                                  │
+│   This change was necessary to support newer versions of Vite.                   │
+│                                                                                  │
+╰──────────────────────────────────────────────────────────────────────────────────╯
+? Do you want to continue? › (Y/n)✔ Do you want to continue? … yes
+
+🔎 found a 'remove-jest-testing-library' migration:
+╭ Automigration detected ────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                            │
+│   Attention: We've detected that you're using the following packages which are known to be incompatible since Storybook    │
+│   8:                                                                                                                       │
+│                                                                                                                            │
+│   - @storybook/jest                                                                                                        │
+│   - @storybook/testing-library                                                                                             │
+│                                                                                                                            │
+│   We will uninstall them for you and install @storybook/test instead.                                                      │
+│                                                                                                                            │
+│   Also, we can help you migrate your stories to use the new package.                                                       │
+│                                                                                                                            │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+? Do you want to run the 'remove-jest-testing-library' migration on your project? › (Y/n)✔ Do you want to run the 'remove-jest-testing-library' migration on your project? … yes
+
+An error occurred while installing dependencies:
+NPM error ERESOLVE - Dependency resolution error.
+
+Please check the logfile generated at ./storybook.log for troubleshooting and try again.
+❌ error when running remove-jest-testing-library migration
+HandledError: Error: NPM error ERESOLVE - Dependency resolution error.
+
+Please check the logfile generated at ./storybook.log for troubleshooting and try again.
+    at NPMProxy.addDependencies (/root/.cache/npm/_npx/bc7e1e37fcb46ffc/node_modules/@storybook/core-common/dist/index.js:33:75)
+    at async Object.run (/root/.cache/npm/_npx/bc7e1e37fcb46ffc/node_modules/@storybook/cli/dist/generate.js:508:296)
+    ... 4 lines matching cause stack trace ...
+    at async upgrade (/root/.cache/npm/_npx/bc7e1e37fcb46ffc/node_modules/@storybook/cli/dist/generate.js:612:2094) {
+  handled: true,
+  cause: Error: NPM error ERESOLVE - Dependency resolution error.
+  
+  Please check the logfile generated at ./storybook.log for troubleshooting and try again.
+      at NPMProxy.runAddDeps (/root/.cache/npm/_npx/bc7e1e37fcb46ffc/node_modules/@storybook/core-common/dist/index.js:35:5643)
+      at async NPMProxy.addDependencies (/root/.cache/npm/_npx/bc7e1e37fcb46ffc/node_modules/@storybook/core-common/dist/index.js:32:927)
+      at async Object.run (/root/.cache/npm/_npx/bc7e1e37fcb46ffc/node_modules/@storybook/cli/dist/generate.js:508:296)
+      at async runFixes (/root/.cache/npm/_npx/bc7e1e37fcb46ffc/node_modules/@storybook/cli/dist/generate.js:598:1794)
+      at async automigrate (/root/.cache/npm/_npx/bc7e1e37fcb46ffc/node_modules/@storybook/cli/dist/generate.js:596:1629)
+      at async doUpgrade (/root/.cache/npm/_npx/bc7e1e37fcb46ffc/node_modules/@storybook/cli/dist/generate.js:612:1625)
+      at async withTelemetry (/root/.cache/npm/_npx/bc7e1e37fcb46ffc/node_modules/@storybook/core-server/dist/index.js:28:3579)
+      at async upgrade (/root/.cache/npm/_npx/bc7e1e37fcb46ffc/node_modules/@storybook/cli/dist/generate.js:612:2094)
+}
+
+
+🔎 found a 'remove-argtypes-regex' migration:
+╭ Manual migration detected ────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                               │
+│   Attention: We've detected that you're using argTypesRegex:                                                  │
+│                                                                                                               │
+│   .storybook/preview.js                                                                                       │
+│     2 | const preview = {                                                                                     │
+│     3 |   parameters: {                                                                                       │
+│   > 4 |     actions: { argTypesRegex: "^on[A-Z].*" },                                                         │
+│       |                ^^^^^^^^^^^^^                                                                          │
+│     5 |     controls: {                                                                                       │
+│     6 |       matchers: {                                                                                     │
+│     7 |         color: /(background|color)$/i,                                                                │
+│                                                                                                               │
+│   In Storybook you can write so-called play functions, which are used to render your stories interactively.   │
+│   Mocking action args in play functions was done implicitly by analyzing the argTypesRegex.                   │
+│                                                                                                               │
+│   Since Storybook 8, implicit action args mocking isn't supported anymore.                                    │
+│                                                                                                               │
+│   Use the following command to check for mocked action usages in your play functions:                         │
+│   npx storybook migrate find-implicit-spies --glob="**/*.stories.@(js|jsx|ts|tsx)"                            │
+│                                                                                                               │
+│   And follow the documentation to migrate your play functions:                                                │
+│   https://storybook.js.org/docs/8.0/essentials/actions#via-storybooktest-fn-spy-function                      │
+│                                                                                                               │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+? Select continue once you have made the required changes, or quit to exit the migration process › quit / continue✔ Select continue once you have made the required changes, or quit to exit the migration process … quit / continue
+
+🔎 found a 'remove-react-dependency' migration:
+╭ Manual migration detected ─────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                            │
+│   We detected that your project has a dependency for "react" that it might not need.                                       │
+│   Nothing breaks by having it, you can safely ignore this message, if you wish.                                            │
+│                                                                                                                            │
+│   Storybook asked you to add "react" as a direct dependency in the past when upgrading from Storybook 6 to 7.              │
+│   However, since version 8.0, Storybook no longer requires you to provide "react" as a dependency.                         │
+│   Some community addons might still wrongfully list "react" and "react-dom" as required peer dependencies, but since       │
+│   Storybook 7.6 it should not be needed in the majority of cases.                                                          │
+│                                                                                                                            │
+│   If you know you are not using React outside of Storybook, it should be safe to remove the "react" and "react-dom"        │
+│   dependencies from your project's package.json.                                                                           │
+│   Storybook cannot do this automatically as removing it might break your project, so it should be done manually with       │
+│   care.                                                                                                                    │
+│                                                                                                                            │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+? Select continue once you have made the required changes, or quit to exit the migration process › quit / continue? Select continue once you have made the required changes, or quit to exit the migration process › quit / continue✔ Select continue once you have made the required changes, or quit to exit the migration process … quit / continue

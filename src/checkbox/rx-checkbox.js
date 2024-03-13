@@ -1,6 +1,9 @@
 // Import Lit and html
 import { LitElement, html, css, nothing } from "lit";
 
+// TODO: remove this for use in app (and as soon as possible once alternative dirty approach used)
+import { SetFieldDirty } from "./helpers";
+
 /**
  * Represents a checkbox.
  * @class RxCheckbox
@@ -157,7 +160,7 @@ class RxCheckbox extends LitElement {
     this.value = e.target.checked;
     this.dispatchEvent(
       // bubble since change is not a composed event
-      new Event("change", { bubbles: true })
+      new Event("change", { bubbles: true }),
     );
     // Call the `SetFieldDirty` global jQuery function
     // TODO: determine whether this is the best way to do this and if not, refactor

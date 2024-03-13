@@ -1,0 +1,44 @@
+npm ERR! code ERESOLVE
+npm ERR! ERESOLVE could not resolve
+npm ERR! 
+npm ERR! While resolving: @storybook/addon-designs@7.0.9
+npm ERR! Found: @storybook/manager-api@8.0.0
+npm ERR! node_modules/@storybook/manager-api
+npm ERR!   @storybook/manager-api@"8.0.0" from @storybook/addon-essentials@8.0.0
+npm ERR!   node_modules/@storybook/addon-essentials
+npm ERR!     dev @storybook/addon-essentials@"^8.0.0" from the root project
+npm ERR!   @storybook/manager-api@"8.0.0" from @storybook/blocks@8.0.0
+npm ERR!   node_modules/@storybook/blocks
+npm ERR!     @storybook/blocks@"8.0.0" from @storybook/addon-controls@8.0.0
+npm ERR!     node_modules/@storybook/addon-controls
+npm ERR!       @storybook/addon-controls@"8.0.0" from @storybook/addon-essentials@8.0.0
+npm ERR!       node_modules/@storybook/addon-essentials
+npm ERR!         dev @storybook/addon-essentials@"^8.0.0" from the root project
+npm ERR!     @storybook/blocks@"8.0.0" from @storybook/addon-docs@8.0.0
+npm ERR!     node_modules/@storybook/addon-essentials/node_modules/@storybook/addon-docs
+npm ERR!       @storybook/addon-docs@"8.0.0" from @storybook/addon-essentials@8.0.0
+npm ERR!       node_modules/@storybook/addon-essentials
+npm ERR!         dev @storybook/addon-essentials@"^8.0.0" from the root project
+npm ERR!     1 more (the root project)
+npm ERR!   3 more (@storybook/core-server, @storybook/web-components, the root project)
+npm ERR! 
+npm ERR! Could not resolve dependency:
+npm ERR! peer @storybook/manager-api@"^7.0.0" from @storybook/addon-designs@7.0.9
+npm ERR! node_modules/@storybook/addon-designs
+npm ERR!   dev @storybook/addon-designs@"^7.0.9" from the root project
+npm ERR! 
+npm ERR! Conflicting peer dependency: @storybook/manager-api@7.6.17
+npm ERR! node_modules/@storybook/manager-api
+npm ERR!   peer @storybook/manager-api@"^7.0.0" from @storybook/addon-designs@7.0.9
+npm ERR!   node_modules/@storybook/addon-designs
+npm ERR!     dev @storybook/addon-designs@"^7.0.9" from the root project
+npm ERR! 
+npm ERR! Fix the upstream dependency conflict, or retry
+npm ERR! this command with --force or --legacy-peer-deps
+npm ERR! to accept an incorrect (and potentially broken) dependency resolution.
+npm ERR! 
+npm ERR! 
+npm ERR! For a full report see:
+npm ERR! /root/.cache/npm/_logs/2024-03-13T13_47_32_935Z-eresolve-report.txt
+
+npm ERR! A complete log of this run can be found in: /root/.cache/npm/_logs/2024-03-13T13_47_32_935Z-debug-0.log
