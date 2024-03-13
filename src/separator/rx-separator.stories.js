@@ -1,23 +1,23 @@
 // Import required dependencies
-import { html } from "lit";
+import { html, nothing } from "lit";
 // TODO: add imports here (uncomment @storybook/test if needed else remove)
-// import { userEvent, fn, expect } from "@storybook/test";
+import { userEvent, fn, expect } from "@storybook/test";
 
 // Import the shadow root helper
 import { withinShadowRoot } from "../helpers";
 
 // Import the custom checkbox component
 // TODO: update to reflect desired component
-import "./rx-component.js";
+import "./rx-separator.js";
 
 // Define the story
 // TODO: update title, component and other fields as needed
 export default {
-  title: "Primitives/Component",
-  component: "rx-component",
+  title: "Primitives/Separator",
+  component: "rx-separator",
   args: {
     // https://storybook.js.org/docs/essentials/actions#action-args
-    fn: fn(),
+    // fn: fn(),
   },
   parameters: {
     // TODO: Add design addon when fix is available (https://github.com/storybookjs/addon-designs/issues/231)
@@ -29,12 +29,30 @@ export default {
   tags: ["autodocs"],
 };
 
-// TODO: update args as needed
-export const Default = ({ args }) => {
-  return html` <rx-component args="${JSON.stringify(args)}"></rx-component> `;
+export const Horizontal = ({ vertical }) => {
+  return html`
+    <div style="height: 200px;">
+      <rx-separator
+        vertical="${vertical ? "vertical" : nothing}"
+      ></rx-separator>
+    </div>
+  `;
 };
-Default.args = {
-  // TODO: add args here
+Horizontal.args = {
+  vertical: false,
+};
+
+export const Vertical = ({ vertical }) => {
+  return html`
+    <div style="height: 200px;">
+      <rx-separator
+        vertical="${vertical ? "vertical" : nothing}"
+      ></rx-separator>
+    </div>
+  `;
+};
+Vertical.args = {
+  vertical: true,
 };
 
 /*
@@ -42,15 +60,15 @@ Default.args = {
  * to learn more about using the canvasElement to query the DOM
  */
 export const Testing = ({}) => {
-  return html` <rx-component args="${JSON.stringify(args)}"></rx-component> `;
+  return html` <rx-separator></rx-separator> `;
 };
 Testing.args = {
   // TODO: add args here
 };
 Testing.play = async ({ canvasElement, step }) => {
-  const wc = await withinShadowRoot(canvasElement, "rx-component");
+  const wc = await withinShadowRoot(canvasElement, "rx-separator");
 
-  const component = wc.getByTestId("rx-component");
+  const separator = wc.getByTestId("rx-separator");
 
-  // TODO: add play function here
+  await expect(separator).toBeTruthy();
 };
