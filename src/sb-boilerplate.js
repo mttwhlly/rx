@@ -1,3 +1,10 @@
+/** 
+ * This is a boilerplate file for creating a new storybook story.
+ * Replace the placeholders with the appropriate values.
+ * Remove the comments and TODOs as you go.
+ * 
+ */
+
 // Import required dependencies
 import { html } from "lit";
 // TODO: add imports here (uncomment @storybook/test if needed else remove)

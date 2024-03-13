@@ -1,3 +1,11 @@
+/**
+ * Storybook stories for the Separator component.
+ * 
+ * This file contains stories that demonstrate the different states of the Separator,
+ * including its default state, its vertical state, and a state used for testing. 
+ * 
+ */
+
 // Import required dependencies
 import { html, nothing } from "lit";
 // TODO: add imports here (uncomment @storybook/test if needed else remove)

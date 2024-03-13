@@ -1,10 +1,19 @@
-// Import Lit and html
+/**
+ * Represents a custom separator element.
+ * @class RxSeparator
+ * @extends LitElement
+ * 
+ * @property {boolean} vertical - Indicates if the separator is vertical
+ * 
+ */
+
+// Import Lit
 import { LitElement, html, css, nothing } from "lit";
 
 class RxSeparator extends LitElement {
   static styles = css`
     :host {
-      --color: #737678;
+      --color: #d8d8d8;
       --width: 1px;
       --spacing: 12px;
     }

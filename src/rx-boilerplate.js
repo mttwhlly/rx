@@ -1,4 +1,10 @@
-// Import Lit and html
+/*
+  * This is a boilerplate for creating a new Lit component.
+  * Replace the placeholders with the appropriate values.
+  * Remove the comments and TODOs as you go.
+*/
+
+// Import Lit
 import { LitElement, html, css } from "lit";
 // TODO: add imports here
 

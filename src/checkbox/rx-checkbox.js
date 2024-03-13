@@ -1,9 +1,3 @@
-// Import Lit and html
-import { LitElement, html, css, nothing } from "lit";
-
-// TODO: remove this for use in app (and as soon as possible once alternative dirty approach used)
-import { SetFieldDirty } from "../helpers";
-
 /**
  * Represents a checkbox.
  * @class RxCheckbox
@@ -17,6 +11,13 @@ import { SetFieldDirty } from "../helpers";
  * @property {string} value - The value of the checkbox
  * @property {boolean} disabled - Indicates if the checkbox is disabled
  */
+
+// Import Lit
+import { LitElement, html, css, nothing } from "lit";
+
+// TODO: remove this for use in app (and as soon as possible once alternative dirty approach used)
+import { SetFieldDirty } from "../helpers";
+
 
 class RxCheckbox extends LitElement {
   static styles = css`

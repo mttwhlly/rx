@@ -1,3 +1,20 @@
+/**
+ * Represents a custom textarea element with additional properties and styling.
+ * @class RxTextArea
+ * @extends LitElement
+ * 
+ * @property {string} label - The label for the textarea
+ * @property {string} value - The value of the textarea
+ * @property {string} id - The id of the textarea
+ * @property {string} placeholder - The placeholder for the textarea
+ * @property {number} maxlength - The maximum length of the textarea
+ * @property {number} minlength - The minimum length of the textarea
+ * @property {boolean} disabled - Indicates if the textarea is disabled
+ * @property {boolean} dirty - Indicates if the textarea has been changed
+ * 
+ */
+
+// Import Lit
 import { LitElement, html, css } from "lit-element";
 
 class RxTextArea extends LitElement {

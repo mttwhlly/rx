@@ -4,6 +4,7 @@
  * This file contains stories that demonstrate the different states of the Checkbox,
  * including its default state, its checked state, its disabled state, and a state
  * used for testing.
+ * 
  */
 
 // Import required dependencies

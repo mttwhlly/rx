@@ -1,3 +1,11 @@
+/** 
+ * Storybook stories for the Textarea component.
+ *
+ * This file contains stories that demonstrate the different states of the Textarea,
+ * including its default state, its disabled state, and a state used for testing.
+ * 
+ */
+
 // Import required dependencies
 import { userEvent, fn, expect } from "@storybook/test";
 import { html, nothing } from "lit";
