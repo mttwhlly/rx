@@ -1,6 +1,14 @@
+/**
+ * Storybook stories for the Checkbox component.
+ *
+ * This file contains stories that demonstrate the different states of the Checkbox,
+ * including its default state, its checked state, its disabled state, and a state
+ * used for testing.
+ */
+
+// Import required dependencies
 import { userEvent, within, waitFor } from "@storybook/testing-library";
 import { expect } from "@storybook/jest";
-// Import the LitElement and html function
 import { html, nothing } from "lit";
 
 // Import the shadow root helper
@@ -19,6 +27,7 @@ export default {
       url: "https://www.figma.com/file/w8Lpk7RAJO79uZWWXZ8YI4/CAQH-DLS-Versions-1.5-%26-2.0?type=design&node-id=175-4080&mode=design&t=i9Mpma3fRtZEkuyz-4",
     },
   },
+  tags: ["autodocs"],
 };
 
 export const Default = ({ label, checked, name, id, disabled }) => {

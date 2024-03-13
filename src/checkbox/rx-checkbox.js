@@ -1,6 +1,20 @@
 // Import Lit and html
 import { LitElement, html, css, nothing } from "lit";
 
+/**
+ * Represents a checkbox.
+ * @class RxCheckbox
+ * @extends {LitElement}
+ *
+ * @property {boolean} checked - Indicates if the checkbox is checked
+ * @property {string} id - The id of the checkbox
+ * @property {string} name - The name of the checkbox
+ * @property {string} label - The label for the checkbox
+ * @property {boolean} dirty - Indicates if the checkbox has been changed
+ * @property {string} value - The value of the checkbox
+ * @property {boolean} disabled - Indicates if the checkbox is disabled
+ */
+
 class RxCheckbox extends LitElement {
   static styles = css`
     :host {
@@ -133,6 +147,10 @@ class RxCheckbox extends LitElement {
     `;
   }
 
+  /**
+   * Handles the click event of the checkbox.
+   * @param {Event} e - The click event
+   */
   onChange(e) {
     this.checked = e.target.checked;
     this.dirty = true;
