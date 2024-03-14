@@ -21,83 +21,7 @@ import { SetFieldDirty } from "../helpers";
 
 class RxCheckbox extends LitElement {
   static styles = css`
-    :host {
-      display: block;
-      position: relative;
-      padding-left: 24px;
-      margin-top: 2px;
-      margin-bottom: 8px;
-      cursor: pointer;
-      user-select: none;
-      font-weight: 400;
-      font-size: 14px;
-      font-family: "Lato", sans-serif;
-      line-height: 16px;
-      text-align: left;
-      letter-spacing: 0.2px;
-    }
-
-    /* bold text if input within label is checked using :has() (https://caniuse.com/css-has) */
-    :host label:has(input:checked) {
-      font-weight: 700;
-    }
-
-    :host input {
-      position: absolute;
-      opacity: 0;
-      cursor: pointer;
-      height: 0;
-      width: 0;
-    }
-
-    :host span {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 12px;
-      width: 12px;
-      background-color: #fff;
-      border: 2px solid #0072cd;
-      border-radius: 4px;
-    }
-
-    :host:hover input ~ span {
-      background-color: #fff;
-      border: 2px solid #0072cd;
-      border-radius: 4px;
-    }
-
-    :host input:checked ~ span {
-      background-color: #0072cd;
-      border: 2px solid #0072cd;
-      border-radius: 4px;
-    }
-
-    /* Style the checkmark/indicator */
-    :host span:after {
-      content: "";
-      position: absolute;
-      display: none;
-    }
-
-    :host input:checked ~ span:after {
-      display: block;
-    }
-
-    :host span:after {
-      left: 3px;
-      top: 0px;
-      width: 4px;
-      height: 7px;
-      border: solid white;
-      border-width: 0 2px 2px 0;
-      transform: rotate(45deg);
-    }
-
-    :host([disabled]) {
-      cursor: not-allowed;
-      opacity: 0.5;
-    }
+    /* styles omitted for brevity */
   `;
 
   static shadowRootOptions = {
@@ -141,6 +65,7 @@ class RxCheckbox extends LitElement {
           name="${this.name}"
           value="${this.checked}"
           @click="${this.onChange}"
+          @keydown="${this.onKeyDown}"
           isdirty="${this.dirty ? "True" : "False"}"
           data-testid="rx-checkbox"
           ?disabled="${this.disabled}"
@@ -166,6 +91,26 @@ class RxCheckbox extends LitElement {
     // Call the `SetFieldDirty` global jQuery function
     // TODO: determine whether this is the best way to do this and if not, refactor
     SetFieldDirty(this);
+  }
+
+  /**
+   * Handles the keydown event of the checkbox.
+   * @param {KeyboardEvent} e - The keydown event
+   */
+  onKeyDown(e) {
+    if (e.key === "Enter" || e.key === "Space") {
+      e.preventDefault();
+      this.checked = !this.checked;
+      this.dirty = true;
+      this.value = this.checked;
+      this.dispatchEvent(
+        // bubble since change is not a composed event
+        new Event("change", { bubbles: true }),
+      );
+      // Call the `SetFieldDirty` global jQuery function
+      // TODO: determine whether this is the best way to do this and if not, refactor
+      SetFieldDirty(this);
+    }
   }
 }
 

@@ -6,6 +6,9 @@
 
 // Import Lit
 import { LitElement, html, css } from "lit";
+import { ifDefined } from "lit/directives/if-defined";
+import { live } from "lit/directives/live";
+import { classMap } from "lit/directives/class-map";
 // TODO: add imports here
 
 // TODO: rename this component
@@ -47,10 +50,13 @@ class RxRadioGroup extends LitElement {
           <label>
             <input
               type="radio"
-              name="${this.label}"
+              name="${ifDefined(this.label)}"
               value="${option}"
-              .checked=${this.value === option}
+              .checked=${live(this.value === option)}
               @change=${this._updateValue}
+              @keydown=${this._handleKeyDown}
+              @focus=${this._handleFocus}
+              @blur=${this._handleBlur}
               data-testid="rx-radiogroup"
             />
             ${option}
@@ -59,11 +65,37 @@ class RxRadioGroup extends LitElement {
       )}
     `;
   }
+
   _updateValue(e) {
     this.value = e.target.value;
     this.dispatchEvent(
       new CustomEvent("value-changed", { detail: { value: this.value } }),
     );
+  }
+
+  _handleKeyDown(e) {
+    if (e.key === "ArrowUp" || e.key === "ArrowDown") {
+      e.preventDefault();
+      const currentIndex = this.options.indexOf(this.value);
+      let newIndex;
+      if (e.key === "ArrowUp") {
+        newIndex = currentIndex > 0 ? currentIndex - 1 : this.options.length - 1;
+      } else {
+        newIndex = currentIndex < this.options.length - 1 ? currentIndex + 1 : 0;
+      }
+      this.value = this.options[newIndex];
+      this.dispatchEvent(
+        new CustomEvent("value-changed", { detail: { value: this.value } }),
+      );
+    }
+  }
+
+  _handleFocus(e) {
+    e.target.parentElement.classList.add("focused");
+  }
+
+  _handleBlur(e) {
+    e.target.parentElement.classList.remove("focused");
   }
 }
 

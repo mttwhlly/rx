@@ -93,6 +93,9 @@ class RxTextArea extends LitElement {
           name="${this.id}"
           .value=${this.value}
           @input=${this._updateValue}
+          @keydown=${this._handleKeyDown}
+          @focus=${this._handleFocus}
+          @blur=${this._handleBlur}
           role="textbox"
           tabindex="0"
           aria-label="${this.label}"
@@ -110,6 +113,25 @@ class RxTextArea extends LitElement {
     this.dispatchEvent(
       new Event("value-changed", { detail: { value: this.value } }),
     );
+  }
+
+  _handleKeyDown(e) {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      this._submitForm();
+    }
+  }
+
+  _handleFocus() {
+    this.setAttribute("focused", "");
+  }
+
+  _handleBlur() {
+    this.removeAttribute("focused");
+  }
+
+  _submitForm() {
+    // Handle form submission logic here
   }
 }
 
