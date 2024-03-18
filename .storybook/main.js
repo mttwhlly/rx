@@ -12,6 +12,9 @@ const config = {
     name: "@storybook/web-components-vite",
     options: {},
   },
+  core: {
+    disableTelemetry: true, // 👈 Disables telemetry
+  },
   docs: {
     autodocs: "tag",
   },

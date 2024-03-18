@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "CAQH's design system",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "storybook dev -p 6006",

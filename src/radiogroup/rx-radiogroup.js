@@ -1,17 +1,23 @@
-/*
- * This is a boilerplate for creating a new Lit component.
- * Replace the placeholders with the appropriate values.
- * Remove the comments and TODOs as you go.
+/**
+ * Represents a radio group.
+ * @class RxRadioGroup
+ * @extends {LitElement}
+ *
+ * @property {string} label - The label for the radio group
+ * @property {Array} options - The options for the radio group
+ * @property {string} value - The value of the radio group
+ * @property {boolean} disabled - Indicates if the radio group is disabled
+ * @property {string} name - The name of the radio group
+ * @property {string} id - The id of the radio group
+ * @property {boolean} required - Indicates if the radio group is required
+ *
  */
 
 // Import Lit
 import { LitElement, html, css } from "lit";
-import { ifDefined } from "lit/directives/if-defined";
-import { live } from "lit/directives/live";
-import { classMap } from "lit/directives/class-map";
-// TODO: add imports here
+import { ifDefined } from "lit/directives/if-defined.js";
+import { live } from "lit/directives/live.js";
 
-// TODO: rename this component
 class RxRadioGroup extends LitElement {
   static styles = css`
     :host {
@@ -24,16 +30,17 @@ class RxRadioGroup extends LitElement {
     }
   `;
 
-  // TODO: uncomment if delegatesFocus is needed
-  //   static shadowRootOptions = {
-  //     ...LitElement.shadowRootOptions,
-  //     delegatesFocus: true,
-  //   };
+  static shadowRootOptions = {
+    ...LitElement.shadowRootOptions,
+    delegatesFocus: true,
+  };
 
   static properties = {
     label: { type: String },
     options: { type: Array },
     value: { type: String },
+    id: { type: String },
+    name: { type: String },
   };
 
   constructor() {
@@ -44,7 +51,7 @@ class RxRadioGroup extends LitElement {
 
   render() {
     return html`
-      <label>${this.label}</label>
+      <label for="${this.label}">${this.label}</label>
       ${this.options.map(
         (option) => html`
           <label>
@@ -79,9 +86,11 @@ class RxRadioGroup extends LitElement {
       const currentIndex = this.options.indexOf(this.value);
       let newIndex;
       if (e.key === "ArrowUp") {
-        newIndex = currentIndex > 0 ? currentIndex - 1 : this.options.length - 1;
+        newIndex =
+          currentIndex > 0 ? currentIndex - 1 : this.options.length - 1;
       } else {
-        newIndex = currentIndex < this.options.length - 1 ? currentIndex + 1 : 0;
+        newIndex =
+          currentIndex < this.options.length - 1 ? currentIndex + 1 : 0;
       }
       this.value = this.options[newIndex];
       this.dispatchEvent(

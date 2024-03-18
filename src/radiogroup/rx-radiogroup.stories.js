@@ -37,11 +37,11 @@ export default {
 };
 
 // TODO: update args as needed
-export const Default = ({ args }) => {
-  return html` <rx-radiogroup></rx-radiogroup> `;
+export const Default = ({ label }) => {
+  return html` <rx-radiogroup label="${label}"></rx-radiogroup> `;
 };
 Default.args = {
-  // TODO: add args here
+  label: "Radio Group",
 };
 
 /*
