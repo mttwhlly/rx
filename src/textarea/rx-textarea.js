@@ -2,7 +2,7 @@
  * Represents a custom textarea element with additional properties and styling.
  * @class RxTextArea
  * @extends LitElement
- * 
+ *
  * @property {string} label - The label for the textarea
  * @property {string} value - The value of the textarea
  * @property {string} id - The id of the textarea
@@ -11,7 +11,7 @@
  * @property {number} minlength - The minimum length of the textarea
  * @property {boolean} disabled - Indicates if the textarea is disabled
  * @property {boolean} dirty - Indicates if the textarea has been changed
- * 
+ *
  */
 
 // Import Lit
@@ -59,6 +59,7 @@ class RxTextArea extends LitElement {
         width: 100%;
         min-height: 60px;
         padding: 8px;
+        margin-top: 6px;
         box-sizing: border-box;
         border: 2px solid #e6e6e6;
         color: #000000;

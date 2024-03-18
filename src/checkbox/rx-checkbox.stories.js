@@ -4,7 +4,7 @@
  * This file contains stories that demonstrate the different states of the Checkbox,
  * including its default state, its checked state, its disabled state, and a state
  * used for testing.
- * 
+ *
  */
 
 // Import required dependencies
@@ -27,10 +27,10 @@ export default {
   },
   parameters: {
     // TODO: Add design addon when fix is available (https://github.com/storybookjs/addon-designs/issues/231)
-    // design: {
-    //   type: "figma",
-    //   url: "https://www.figma.com/file/w8Lpk7RAJO79uZWWXZ8YI4/CAQH-DLS-Versions-1.5-%26-2.0?type=design&node-id=175-4080&mode=design&t=i9Mpma3fRtZEkuyz-4",
-    // },
+    design: {
+      type: "figma",
+      url: "https://www.figma.com/file/w8Lpk7RAJO79uZWWXZ8YI4/CAQH-DLS-Versions-1.5-%26-2.0?type=design&node-id=175-4080&mode=design&t=i9Mpma3fRtZEkuyz-4",
+    },
   },
   tags: ["autodocs"],
 };
